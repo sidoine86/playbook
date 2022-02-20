@@ -1,0 +1,23 @@
+---
+ - hosts: all
+   ignore_errors: yes
+   become: yes
+   tasks:
+    - name: create user
+      user:
+        name: ewane
+        comment: ewane ayissi
+ 
+    - name: create directory
+      file:
+       path: /tmp/devops-ans
+       owner: ewane
+       state: directory
+       mode: "0777"
+
+    - name: create file
+      file:
+       path: /tmp/devops-ans
+       owner: ewane
+       state: touch
+       mode: "0600"
