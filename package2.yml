@@ -1,0 +1,19 @@
+---
+ - hosts: all
+   ignore_errors: yes   
+   become: yes
+   tasks:
+    - name: update package
+      yum:
+       name: "*"
+       state: latest
+      when: ansible_distribution == "CentOS"
+
+    - name: upgrade package
+      apt:
+        name: "*"
+        state: latest
+      when: ansible_distribution == "Ubuntu"
+ 
+    - name: reboot system
+      reboot:
